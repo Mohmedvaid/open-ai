@@ -5,8 +5,13 @@ $(document).ready(function () {
     const prompt = getUserPrompt();
     const data = generateData(prompt);
     sendRequest(data)
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
+      .then((data) => data.json())
+      .then(getChoices)
+      .then(renderChoices)
+      .catch((err) => {
+        console.log("Error:");
+        console.error(err);
+      });
   });
 });
 
@@ -19,19 +24,33 @@ function sendRequest(data) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer APIKEY`,
+      Authorization: `Bearer API`,
     },
     body: JSON.stringify(data),
   });
 }
 
 function generateData(prompt, config) {
-  return (data = {
+  return {
     prompt,
     temperature: 0.5,
     max_tokens: 64,
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
+  };
+}
+
+function getChoices(data) {
+  console.log(data);
+  return data.choices;
+}
+
+function renderChoices(choices) {
+  const responseDiv = $("#response");
+  choices.forEach((choice) => {
+    const choiceDiv = $("<div>");
+    choiceDiv.text(choice.text);
+    responseDiv.append(choiceDiv);
   });
 }
