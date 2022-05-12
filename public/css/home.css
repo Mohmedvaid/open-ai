@@ -1,0 +1,11 @@
+#response{ 
+  height: 240px;
+  overflow: auto;
+}
+
+.response-ai{
+text-align: left;
+}
+.response-user{
+  text-align: right;
+}
