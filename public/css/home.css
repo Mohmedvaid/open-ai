@@ -1,11 +1,19 @@
 #response{ 
   height: 240px;
   overflow: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
 }
-
 .response-ai{
 text-align: left;
 }
 .response-user{
   text-align: right;
+}
+.message{
+  width: 50%;
+}
+.message-bubble{
+  
 }
