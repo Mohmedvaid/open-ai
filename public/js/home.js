@@ -10,6 +10,7 @@ $(document).ready(function () {
       // .then((data) => data.json())
       .then(extractAIResponses)
       .then(renderChoices)
+      .then(scrollToBottomInChat)
       .catch((err) => {
         console.log("Error:");
         console.error(err);
@@ -70,4 +71,8 @@ function renderChoices(data) {
 
 function createUserPromptHTML(prompt) {
   return `<p class="response-user">${prompt}</p>`;
+}
+
+function scrollToBottomInChat() {
+  $("#response").scrollTop($("#response")[0].scrollHeight);
 }
