@@ -14,7 +14,7 @@ const OpenAI = {
     return;
   },
   extractResponses: function (data) {
-    console.log(data);
+    console.log("data from out api==>>", data);
     return data.choices;
   },
   generateAPIBody: function (prompt, config) {
@@ -28,16 +28,10 @@ const OpenAI = {
     };
   },
   sendRequest: function (data) {
-    return fetch(
-      "https://api.openai.com/v1/engines/text-curie-001/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer api_key`,
-        },
-        body: JSON.stringify(data),
-      }
-    ).then((res) => res.json());
+    return fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
   },
 };
