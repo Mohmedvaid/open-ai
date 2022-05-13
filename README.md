@@ -1,4 +1,4 @@
-# NBA Games
+# Chat with GPT-3
 
 <img alt="Chat with GPT-3" src="public/assets/Open-ai-chat-ss.png">
 
