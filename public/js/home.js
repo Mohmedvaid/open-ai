@@ -11,6 +11,7 @@ $(document).ready(function () {
     const HTMLPrompt = User.createPromptHTML(prompt);
     User.appendPrompt(HTMLPrompt);
     Util.scrollToBottom(".msg_card_body");
+    User.clearPrompt();
 
     // Generate the API request body
     const data = OpenAI.generateAPIBody(prompt);
@@ -20,7 +21,6 @@ $(document).ready(function () {
     OpenAI.sendRequest(data)
       .then((res) => OpenAI.extractResponses(res))
       .then((responses) => OpenAI.renderChoices(responses))
-      .then(() => User.clearPrompt())
       .then(() => Util.clearError())
       .then(() => Util.scrollToBottom(".msg_card_body"))
       .then(() => OpenAI.hideTypingLoader())

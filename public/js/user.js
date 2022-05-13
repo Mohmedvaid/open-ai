@@ -18,7 +18,7 @@ const User = {
     `;
   },
   clearPrompt: function () {
-    const promptDiv = $("#prompt");
-    promptDiv.text("");
+    const promptTextarea = $("textarea[name='userPrompt']");
+    promptTextarea.val("");
   },
 };
