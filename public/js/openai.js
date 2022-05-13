@@ -1,10 +1,15 @@
 const OpenAI = {
   renderChoices: function (data) {
-    const responseDiv = $("#response");
-    console.log(data);
-    const html = `<div class="response-ai">
-                    ${data.map((choice) => `<p>${choice.text}</p>`).join("")}
-                </div>`;
+    const responseDiv = $("#chatMain");
+    const html = `
+          <div class="d-flex justify-content-start mb-4">
+              <div class="img_cont_msg">
+                  <img src="assets/logo.svg" class="rounded-circle user_img_msg">
+              </div>
+              <div class="msg_cotainer">
+            ${data.map((choice) => `<p>${choice.text}</p>`).join("")}
+              </div>
+          </div>`;
     responseDiv.append(html);
     return;
   },
@@ -29,11 +34,10 @@ const OpenAI = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer apikey`,
+          Authorization: `Bearer api_key`,
         },
         body: JSON.stringify(data),
       }
-    )
-      .then((res) => res.json())
+    ).then((res) => res.json());
   },
 };
