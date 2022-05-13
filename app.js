@@ -1,7 +1,7 @@
 // ====== DEPENDENCIES ======
 const express = require("express");
 const routes = require("./routes");
-const chalk = require("chalk");
+// const chalk = require("chalk");
 require("dotenv/config");
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -23,7 +23,5 @@ app.use(routes);
 
 // ====== START SERVER ======
 app.listen(PORT, function () {
-  console.log(
-    chalk.cyan(`API Server now listening at http://localhost:${PORT}`)
-  );
+  console.log(`API Server now listening at http://localhost:${PORT}`);
 });
