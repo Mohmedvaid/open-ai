@@ -18,8 +18,8 @@
 </head>
 
 <body>
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="assets/logo.svg" alt="" width="72" height="57">
+    <div class="px-4 py-1 text-center">
+        <img class="d-block mx-auto mb-1" src="assets/logo.svg" alt="" width="72" height="57">
         <h1 class="display-5 fw-bold">Hey there, this is OpenAI</h1>
         <div class="col-lg-8 mx-auto">
             <p class="lead mb-4">Give me a prompt and I will respond back. </p>
@@ -27,31 +27,32 @@
     </div>
     <!-- Section -->
     <section class="container">
-        <div class="row g-3 d-flex justify-content-center">
-            <div class="col-lg-8" id="response">
-                <div class="response-ai">
-                    <p>Hey, I am open-AI</p>
-                </div>
-                <div class="response-ai">
-                    <p>You can ask me anything!</p>
-                </div>
-                <div class="response-user">
-                    <p>test</p>
+        <div class="main">
+            <div class="row g-3 d-flex justify-content-center my-1">
+                <div class="col-lg-8 border border-dark" id="response">
+                    <div class="response-ai">
+                        <p>Hey, I am open-AI</p>
+                    </div>
+                    <div class="response-ai">
+                        <p>You can ask me anything!</p>
+                    </div>
+                    <div class="response-user">
+                        <p>test</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row g-3 d-flex justify-content-center">
-            <div class="col-lg-8">
-                <form id="formMain" class="d-flex">
-                    <textarea name="userPrompt" form="formMain" id="promptBox" class="form-control"
-                        aria-label="With textarea" placeholder="Write a random poem.">
-                    </textarea>
-                    <div class="align-self-end mx-1">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </form>
+            <div class="row g-3 d-flex justify-content-center my-1">
+                <div class="col-lg-6">
+                    <form id="formMain" class="d-flex">
+                        <textarea name="userPrompt" form="formMain" id="promptBox" class="form-control"
+                            aria-label="With textarea" placeholder="Write a random poem."></textarea>
+                        <div class="align-self-end mx-2">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

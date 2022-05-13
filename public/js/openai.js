@@ -23,25 +23,17 @@ const OpenAI = {
     };
   },
   sendRequest: function (data) {
-    let tempData = localStorage.getItem("data");
-    if (tempData) {
-      tempData = JSON.parse(tempData);
-      return Promise.resolve(tempData);
-    }
     return fetch(
       "https://api.openai.com/v1/engines/text-curie-001/completions",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer api`,
+          Authorization: `Bearer apikey`,
         },
         body: JSON.stringify(data),
       }
     )
       .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("data", JSON.stringify(data));
-      });
   },
 };

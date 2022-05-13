@@ -6,7 +6,6 @@ $(document).ready(function () {
     const HTMLPrompt = User.createPromptHTML(prompt);
     User.appendPrompt(HTMLPrompt);
     OpenAI.sendRequest(data)
-      // .then((data) => data.json())
       .then((res) => OpenAI.extractResponses(res))
       .then((responses) => OpenAI.renderChoices(responses))
       .then(() => Util.scrollToBottomInChat())
