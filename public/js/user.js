@@ -21,4 +21,23 @@ const User = {
     const promptTextarea = $("textarea[name='userPrompt']");
     promptTextarea.val("");
   },
+  saveDataToLocalStorage: function (data) {
+    let exitingData = localStorage.getItem("chatData");
+    exitingData = exitingData ? JSON.parse(exitingData) : [];
+    updatedData = [...exitingData, data];
+    localStorage.setItem("chatData", JSON.stringify(updatedData));
+    return data;
+  },
+  getDataFromLocalStorage: function () {
+    let existingData = localStorage.getItem("chatData");
+    existingData = existingData ? JSON.parse(existingData) : [];
+    return existingData;
+  },
+  renderSavedData: function (data) {
+    data.forEach((item) => {
+      const HTMLPrompt = User.createPromptHTML(item.prompt);
+      User.appendPrompt(HTMLPrompt);
+      OpenAI.renderChoices(item.chatResponse);
+    });
+  },
 };

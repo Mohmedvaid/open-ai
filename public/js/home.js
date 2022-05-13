@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#formMain").submit(function (e) {
+  $("#formMain").submit(async function (e) {
     e.preventDefault();
     // Get and validate the input
     const prompt = User.getPrompt();
@@ -16,18 +16,40 @@ $(document).ready(function () {
     // Generate the API request body
     const data = OpenAI.generateAPIBody(prompt);
 
-    // Send the request and render the response
-    OpenAI.showTypingLoader();
-    OpenAI.sendRequest(data)
-      .then((res) => OpenAI.extractResponses(res))
-      .then((responses) => OpenAI.renderChoices(responses))
-      .then(() => Util.clearError())
-      .then(() => Util.scrollToBottom(".msg_card_body"))
-      .then(() => OpenAI.hideTypingLoader())
-      .catch((err) => {
-        OpenAI.hideTypingLoader();
-        Util.clearError();
-        Util.displayError(err);
-      });
+    try {
+      // Send the request and render the response
+      OpenAI.showTypingLoader();
+      const response = await OpenAI.sendRequest(data);
+      const chatResponse = OpenAI.extractResponses(response);
+      OpenAI.renderChoices(chatResponse);
+      User.saveDataToLocalStorage({ prompt, chatResponse });
+      Util.clearError();
+      Util.scrollToBottom(".msg_card_body");
+      OpenAI.hideTypingLoader();
+    } catch (err) {
+      OpenAI.hideTypingLoader();
+      Util.clearError();
+      Util.displayError(err);
+    }
+
+    // OpenAI.sendRequest(data)
+    //   .then((res) => OpenAI.extractResponses(res))
+    //   .then((responses) => OpenAI.renderChoices(responses))
+    //   .then(() => User.saveDataToLocalStorage([{ prompt, responses }]))
+    //   .then(() => Util.clearError())
+    //   .then(() => Util.scrollToBottom(".msg_card_body"))
+    //   .then(() => OpenAI.hideTypingLoader())
+    //   .catch((err) => {
+    //     OpenAI.hideTypingLoader();
+    //     Util.clearError();
+    //     Util.displayError(err);
+    //   });
   });
+
+  // Render saved data from local storage
+  const chatHistory = User.getDataFromLocalStorage();
+  if (chatHistory.length > 0) {
+    User.renderSavedData(chatHistory);
+  }
+  // Ready ends here
 });

@@ -5,7 +5,10 @@ const Util = {
   displayError: function (error) {
     console.error(error);
     const errDiv = $("#error");
-    errDiv.text("Oops, something went wrong. Please try again.");
+    let errMsg = error
+      ? error
+      : "Oops, something went wrong. Please try again.";
+    errDiv.text(errMsg);
     errDiv.removeClass("invisible");
   },
   clearError: function () {
