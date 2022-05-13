@@ -1,7 +1,10 @@
 const OpenAI = {
   renderChoices: function (data) {
     const responseDiv = $("#response");
-    const html = `<p class="response-ai">${data[0].text}</p>`;
+    console.log(data);
+    const html = `<div class="response-ai">
+                    ${data.map((choice) => `<p>${choice.text}</p>`).join("")}
+                </div>`;
     responseDiv.append(html);
     return;
   },
@@ -31,7 +34,7 @@ const OpenAI = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer api`,
         },
         body: JSON.stringify(data),
       }

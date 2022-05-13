@@ -6,6 +6,8 @@ const User = {
     $("#response").append(HTMLPrompt);
   },
   createPromptHTML: function (prompt) {
-    return `<p class="response-user">${prompt}</p>`;
+    return `<div class="response-user">
+                <p>${prompt}</p>
+            </div>`;
   },
 };
