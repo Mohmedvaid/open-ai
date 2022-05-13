@@ -34,4 +34,12 @@ const OpenAI = {
       body: JSON.stringify(data),
     }).then((res) => res.json());
   },
+  showTypingLoader: function () {
+    const loader = $("#typingLoader");
+    loader.removeClass("invisible");
+  },
+  hideTypingLoader: function () {
+    const loader = $("#typingLoader");
+    loader.addClass("invisible");
+  },
 };

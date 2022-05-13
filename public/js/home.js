@@ -16,13 +16,16 @@ $(document).ready(function () {
     const data = OpenAI.generateAPIBody(prompt);
 
     // Send the request and render the response
+    OpenAI.showTypingLoader();
     OpenAI.sendRequest(data)
       .then((res) => OpenAI.extractResponses(res))
       .then((responses) => OpenAI.renderChoices(responses))
       .then(() => User.clearPrompt())
       .then(() => Util.clearError())
       .then(() => Util.scrollToBottom(".msg_card_body"))
+      .then(() => OpenAI.hideTypingLoader())
       .catch((err) => {
+        OpenAI.hideTypingLoader();
         Util.clearError();
         Util.displayError(err);
       });

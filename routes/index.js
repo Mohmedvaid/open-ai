@@ -31,7 +31,7 @@ router.post("/api/chat", (req, res) => {
     .then((res) => res.data)
     .then((data) => res.send(data))
     .catch((err) => {
-      console.log(err);
+      console.log(err.response);
       return res.status(500).send("Error");
     });
 });
