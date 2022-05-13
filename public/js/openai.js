@@ -14,7 +14,6 @@ const OpenAI = {
     return;
   },
   extractResponses: function (data) {
-    console.log("data from out api==>>", data);
     return data.choices;
   },
   generateAPIBody: function (prompt, config) {

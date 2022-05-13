@@ -12,7 +12,6 @@ router.get("/", (req, res) =>
 
 router.post("/api/chat", (req, res) => {
   const { prompt } = req.body;
-  console.log(req.body);
   if (prompt.length === 0) {
     res.status(400).send("Please enter a prompt");
     return;
@@ -31,7 +30,7 @@ router.post("/api/chat", (req, res) => {
     .then((res) => res.data)
     .then((data) => res.send(data))
     .catch((err) => {
-      console.log(err.response);
+      console.error(err.response);
       return res.status(500).send("Error");
     });
 });
